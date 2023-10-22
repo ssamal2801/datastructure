@@ -1,4 +1,4 @@
-// Facts about Graphs:
+//* Facts about Graphs:
 // 1. Graphs are collections of vertices and edges
 // 2. Edge: connection between two vertices
 // 3. Vertex: node in a graph
@@ -27,7 +27,7 @@
 // 26. Trees have a single path between any two vertices
 // 27. Trees can be traversed using BFS or DFS
 
-// #########################################
+//* #########################################
 // Graphs in JavaScript can be represented using objects and arrays.
 // The following is an example of an undirected, unweighted graph:
 const undirected_unweighted = {
@@ -45,9 +45,8 @@ const undirected_unweighted = {
 // 4. The arrays contain the vertices that the key vertex is connected to
 // 5. The graph is undirected because the edges are bidirectional
 // 6. The graph is unweighted because the edges do not have a weight
-// #########################################
+//* #########################################
 
-// #########################################
 // The following is an example of an undirected, weighted graph:
 const undirected_weighted = {
     a: [
@@ -64,9 +63,8 @@ const undirected_weighted = {
 // Ex a: [{ vertex: "b", weight: 1 }, { vertex: "c", weight: 2 }]
 // The above is a weighted graph because the edges have a weight.
 // Ex a: [{ vertex: "b", weight: 1 }, { vertex: "c", weight: 2 }]
-// #########################################
 
-// #########################################
+//* #########################################
 // The following is an example of a directed, unweighted graph:
 const directed_unweighted = {
     a: ['b', 'c'],
@@ -81,9 +79,8 @@ const directed_unweighted = {
 // ex: a: ["b", "c"],
 // The graph is unweighted because the edges do not have a weight
 // ex: a: ["b", "c"],
-// #########################################
+//* #########################################
 
-// #########################################
 // The following is an example of a directed, weighted graph:
 const directed_weighted = {
     a: [
@@ -100,4 +97,4 @@ const directed_weighted = {
 // ex: a: [{ vertex: "b", weight: 1 }, { vertex: "c", weight: 2 }]
 // The graph is weighted because the edges have a weight
 // ex: a: [{ vertex: "b", weight: 1 }, { vertex: "c", weight: 2 }]
-// #########################################
+//* #########################################
