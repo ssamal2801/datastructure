@@ -23,8 +23,8 @@ const depthFirstPrint = ({ graph, startNode }) => {
         const current = stack.pop();
         console.log(current);
 
-        for (let node of graph[current]) {
-            stack.push(node);
+        for (let neighbor of graph[current]) {
+            stack.push(neighbor);
         }
     }
 };
