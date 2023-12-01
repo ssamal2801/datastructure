@@ -17,7 +17,7 @@ const sumZero = (arr) => {
         if (leftElement + rightElement > 0) {
             pointerLeft++;
         } else {
-            pointerRight++;
+            pointerRight--;
         }
     }
 };
