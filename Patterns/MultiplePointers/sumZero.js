@@ -3,8 +3,8 @@
 //* The function should find the first pair where the sum is 0.
 
 const sumZero = (arr) => {
-    const pointerLeft = 0;
-    const pointerRight = arr.length - 1;
+    let pointerLeft = 0;
+    let pointerRight = arr.length - 1;
 
     while (pointerLeft < pointerRight) {
         let leftElement = arr[pointerLeft];
