@@ -1,3 +1,5 @@
+// Why the name, bubble sort? Because as the array is sorted,
+// values "bubble" to the top of the array like bubbles rising in a glass of soda.
 // About bubble sort:
 // compare each pair of adjacent items and swap them if they are in the wrong order
 // the pass through the list is repeated until no swaps are needed
