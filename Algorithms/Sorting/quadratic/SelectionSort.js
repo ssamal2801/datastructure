@@ -7,6 +7,7 @@
 // if the "minimum" is not the value (index) you initially began with, swap the two values.
 
 // Time complexity: O(n^2)
+// Space complexity: O(1)
 
 const selectionSort = (arr) => {
     const swap = (arr, idx1, idx2) => {

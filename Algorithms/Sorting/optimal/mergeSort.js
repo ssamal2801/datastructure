@@ -3,6 +3,9 @@
 // based on ascending or descending order at multiple levels till we end up again with a single sorted array.
 // Note: an array is sorted by default if it has 0 or 1 element.
 
+// Time complexity of mergeSort is O(n log n) in all cases.
+// Space complexity of mergeSort is O(n) in all cases.
+
 // How to merge two arrays and sort them on the way?
 // ! Always takes two sorted array
 const mergeSortedArrs = (arr1, arr2) => {

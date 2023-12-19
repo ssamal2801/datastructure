@@ -2,6 +2,9 @@
 // Because it inserts each element into its proper place in the sorted list.
 // This sorted list is generally the left portion of the selected element.
 
+// Time complexity of insertionSort is O(n^2) in worst case.
+// Space complexity of insertionSort is O(1) in all cases.
+
 const insertionSort = (arr) => {
     // Ascending order:
     // Select an element starting from left of the array.

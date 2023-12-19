@@ -3,7 +3,9 @@
 // About bubble sort:
 // compare each pair of adjacent items and swap them if they are in the wrong order
 // the pass through the list is repeated until no swaps are needed
+
 // Time complexity: O(n^2)
+// Space complexity: O(1)
 
 // Bubble sort implementation
 function bubbleSort(arr) {
