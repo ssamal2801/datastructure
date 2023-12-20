@@ -28,7 +28,7 @@ class SinglyLinklist {
 
     traverse() {
         let current = this.head;
-        while (current) {
+        while (current?.data) {
             console.log(current.data);
             current = current.next;
         }
@@ -117,12 +117,23 @@ class SinglyLinklist {
         let current = this.head;
         while (current) {
             if (counter === position) {
-                return current.data;
+                return current;
             }
             counter++;
             current = current.next;
         }
         return null;
+    }
+
+    set(position, value) {
+        // update value at position
+        const toUpdate = this.get(position);
+        if (toUpdate) {
+            toUpdate.data = value;
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 
@@ -132,4 +143,6 @@ list.push('swagat');
 list.push('hi there');
 list.push(Array.from({ length: 5 }, () => 0));
 
-console.log(list.get('ewrew'));
+list.set(3, 'new value');
+
+console.log(list.traverse());
