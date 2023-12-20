@@ -135,6 +135,28 @@ class SinglyLinklist {
             return false;
         }
     }
+
+    insert(position, value) {
+        if (position < 0 || position > this.length) {
+            console.log('invalid position');
+            return false;
+        }
+        const newNode = new Node(value);
+        if (position === 0) {
+            newNode.next = this.head;
+            this.head = newNode;
+            this.length++;
+            return true;
+        }
+        const prevNode = this.get(position - 1);
+        const oldNode = prevNode.next;
+
+        prevNode.next = newNode;
+        newNode.next = oldNode;
+        this.length++;
+
+        return true;
+    }
 }
 
 var list = new SinglyLinklist();
@@ -143,6 +165,6 @@ list.push('swagat');
 list.push('hi there');
 list.push(Array.from({ length: 5 }, () => 0));
 
-list.set(3, 'new value');
+list.insert(0, 'new value');
 
 console.log(list.traverse());
