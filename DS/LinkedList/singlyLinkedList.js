@@ -176,6 +176,23 @@ class SinglyLinklist {
 
         return false;
     }
+
+    reverse() {
+        let currentHead = this.head;
+        this.head = this.tail;
+        this.tail = currentHead;
+
+        let next = null;
+        let previous = null;
+
+        while (currentHead) {
+            next = currentHead.next;
+            currentHead.next = previous;
+            previous = currentHead;
+            currentHead = next;
+        }
+        return this;
+    }
 }
 
 var list = new SinglyLinklist();
@@ -183,7 +200,5 @@ list.push(5);
 list.push('swagat');
 list.push('hi there');
 list.push(Array.from({ length: 5 }, () => 0));
-
-list.remove(3);
-
+list.reverse();
 console.log(list.traverse());
