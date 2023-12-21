@@ -201,4 +201,5 @@ list.push('swagat');
 list.push('hi there');
 list.push(Array.from({ length: 5 }, () => 0));
 list.reverse();
-console.log(list.traverse());
+
+list.traverse();
