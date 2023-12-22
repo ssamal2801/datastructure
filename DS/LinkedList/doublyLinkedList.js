@@ -51,6 +51,26 @@ class DoublyLinklist {
         this.length++;
         return this;
     }
+
+    pop() {
+        if (!this.head) {
+            console.log('Empty list, nothing to remove.');
+            return undefined;
+        }
+
+        const nodeToRemove = this.tail;
+
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        } else {
+            this.tail = nodeToRemove.prev;
+            this.tail.next = null;
+        }
+
+        this.length--;
+        return nodeToRemove;
+    }
 }
 
 let doublyList = new DoublyLinklist();
@@ -58,5 +78,7 @@ let doublyList = new DoublyLinklist();
 doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
+doublyList.pop();
+doublyList.pop();
 
 doublyList.traverse();
