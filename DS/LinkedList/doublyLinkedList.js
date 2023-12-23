@@ -112,7 +112,7 @@ class DoublyLinklist {
             // search from the end
             for (let index = this.length - 1; index >= mid; index--) {
                 if (index === position) {
-                    return node.data;
+                    return node;
                 }
                 node = node.prev;
             }
@@ -121,7 +121,7 @@ class DoublyLinklist {
             //search from the start
             for (let index = 0; index < mid; index++) {
                 if (index === position) {
-                    return node.data;
+                    return node;
                 }
                 node = node.next;
             }
@@ -129,115 +129,43 @@ class DoublyLinklist {
     }
 
     set(val, position) {
-        if (position < 0 || position > this.length) {
+        if (position < 0 || position > this.length - 1) {
             console.log('Position out of bound');
             return false;
         }
 
-        const mid = Math.floor(position / 2);
+        const nodeToUpdate = this.get(position);
+        nodeToUpdate.data = val;
 
-        if (position >= mid) {
-            let node = this.tail;
-            // search from the end
-            for (let index = this.length - 1; index >= mid; index--) {
-                if (index === position) {
-                    node.data = val;
-                    return true;
-                }
-                node = node.prev;
-            }
-        } else {
-            let node = this.head;
-            //search from the start
-            for (let index = 0; index < mid; index++) {
-                if (index === position) {
-                    node.data = val;
-                    return true;
-                }
-                node = node.next;
-            }
-        }
         return false;
     }
 
     insert(val, position) {
-        if (position < 0 || position > this.length) {
+        if (position < 0 || position > this.length - 1) {
             console.log('Position out of bound');
             return false;
         }
 
-        const mid = Math.floor(position / 2);
-        const newNode = new Node(val);
-
-        if (position >= mid) {
-            let node = this.tail;
-            // search from the end
-            for (let index = this.length - 1; index >= mid; index--) {
-                if (index === position) {
-                    const prevNode = node.prev;
-                    // set correct addresses in newNode
-                    newNode.next = node;
-                    newNode.prev = prevNode;
-                    // Update prev address of current node to the new node
-                    node.prev = newNode;
-                    // Update next address of prev node to new node
-                    prevNode.next = newNode;
-                    this.length++;
-                    return true;
-                }
-                node = node.prev;
-            }
-        } else {
-            let node = this.head;
-            //search from the start
-            for (let index = 0; index < mid; index++) {
-                if (index === position) {
-                    const prevNode = node.prev;
-                    // set correct addresses in newNode
-                    newNode.next = node;
-                    newNode.prev = prevNode;
-                    // Update prev address of current node to the new node
-                    node.prev = newNode;
-                    // Update next address of prev node to new node
-                    prevNode.next = newNode;
-                    this.length++;
-                    return true;
-                }
-                node = node.next;
-            }
+        if (position === 0) {
+            this.unshift(val);
+            return true;
         }
-        return false;
-    }
-
-    set(val, position) {
-        if (position < 0 || position > this.length) {
-            console.log('Position out of bound');
-            return false;
+        if (position === this.length - 1) {
+            this.push(val);
+            return true;
         }
 
-        const mid = Math.floor(position / 2);
+        let newNode = new Node(val);
+        let prevNode = this.get(position - 1);
+        let nextNode = prevNode.next;
 
-        if (position >= mid) {
-            let node = this.tail;
-            // search from the end
-            for (let index = this.length - 1; index >= mid; index--) {
-                if (index === position) {
-                    node.data = val;
-                    return true;
-                }
-                node = node.prev;
-            }
-        } else {
-            let node = this.head;
-            //search from the start
-            for (let index = 0; index < mid; index++) {
-                if (index === position) {
-                    node.data = val;
-                    return true;
-                }
-                node = node.next;
-            }
-        }
+        prevNode.next = newNode;
+        newNode.prev = prevNode;
+        newNode.next = nextNode;
+        nextNode.prev = newNode;
+
+        this.length++;
+
         return false;
     }
 
@@ -248,51 +176,22 @@ class DoublyLinklist {
         }
 
         if (position === 0) {
-            this.head = this.head.next;
-            this.head.prev = null;
-            this.length--;
+            this.shift();
             return true;
         }
         if (position === this.length - 1) {
-            this.tail = this.tail.prev;
-            this.tail.next = null;
-            this.length--;
+            this.pop();
             return true;
         }
 
-        const mid = Math.floor(this.length / 2);
+        let nodeToRemove = this.get(position);
+        let prevNode = nodeToRemove.prev;
+        let nextNode = nodeToRemove.next;
 
-        if (position >= mid) {
-            let node = this.tail;
-            // search from the end
-            for (let index = this.length - 1; index >= mid; index--) {
-                if (index === position) {
-                    const prevNode = node.prev;
-                    const nextNode = node.next;
+        prevNode.next = nextNode;
+        nextNode.prev = prevNode;
 
-                    prevNode.next = nextNode;
-                    nextNode.prev = prevNode;
-                    this.length--;
-                    return true;
-                }
-                node = node.prev;
-            }
-        } else {
-            let node = this.head;
-            //search from the start
-            for (let index = 0; index < mid; index++) {
-                if (index === position) {
-                    const prevNode = node.prev;
-                    const nextNode = node.next;
-
-                    prevNode.next = nextNode;
-                    nextNode.prev = prevNode;
-                    this.length--;
-                    return true;
-                }
-                node = node.next;
-            }
-        }
+        this.length--;
 
         return false;
     }
@@ -304,6 +203,6 @@ doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
 
-doublyList.remove(2);
+doublyList.remove(-10, 2);
 
 doublyList.traverse();
