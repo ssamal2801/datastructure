@@ -208,6 +208,94 @@ class DoublyLinklist {
         }
         return false;
     }
+
+    set(val, position) {
+        if (position < 0 || position > this.length) {
+            console.log('Position out of bound');
+            return false;
+        }
+
+        const mid = Math.floor(position / 2);
+
+        if (position >= mid) {
+            let node = this.tail;
+            // search from the end
+            for (let index = this.length - 1; index >= mid; index--) {
+                if (index === position) {
+                    node.data = val;
+                    return true;
+                }
+                node = node.prev;
+            }
+        } else {
+            let node = this.head;
+            //search from the start
+            for (let index = 0; index < mid; index++) {
+                if (index === position) {
+                    node.data = val;
+                    return true;
+                }
+                node = node.next;
+            }
+        }
+        return false;
+    }
+
+    remove(position) {
+        if (position < 0 || position > this.length - 1) {
+            console.log('Position out of bound');
+            return false;
+        }
+
+        if (position === 0) {
+            this.head = this.head.next;
+            this.head.prev = null;
+            this.length--;
+            return true;
+        }
+        if (position === this.length - 1) {
+            this.tail = this.tail.prev;
+            this.tail.next = null;
+            this.length--;
+            return true;
+        }
+
+        const mid = Math.floor(this.length / 2);
+
+        if (position >= mid) {
+            let node = this.tail;
+            // search from the end
+            for (let index = this.length - 1; index >= mid; index--) {
+                if (index === position) {
+                    const prevNode = node.prev;
+                    const nextNode = node.next;
+
+                    prevNode.next = nextNode;
+                    nextNode.prev = prevNode;
+                    this.length--;
+                    return true;
+                }
+                node = node.prev;
+            }
+        } else {
+            let node = this.head;
+            //search from the start
+            for (let index = 0; index < mid; index++) {
+                if (index === position) {
+                    const prevNode = node.prev;
+                    const nextNode = node.next;
+
+                    prevNode.next = nextNode;
+                    nextNode.prev = prevNode;
+                    this.length--;
+                    return true;
+                }
+                node = node.next;
+            }
+        }
+
+        return false;
+    }
 }
 
 let doublyList = new DoublyLinklist();
@@ -216,6 +304,6 @@ doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
 
-doublyList.insert(1995, 2);
+doublyList.remove(2);
 
 doublyList.traverse();
