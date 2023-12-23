@@ -159,6 +159,55 @@ class DoublyLinklist {
         }
         return false;
     }
+
+    insert(val, position) {
+        if (position < 0 || position > this.length) {
+            console.log('Position out of bound');
+            return false;
+        }
+
+        const mid = Math.floor(position / 2);
+        const newNode = new Node(val);
+
+        if (position >= mid) {
+            let node = this.tail;
+            // search from the end
+            for (let index = this.length - 1; index >= mid; index--) {
+                if (index === position) {
+                    const prevNode = node.prev;
+                    // set correct addresses in newNode
+                    newNode.next = node;
+                    newNode.prev = prevNode;
+                    // Update prev address of current node to the new node
+                    node.prev = newNode;
+                    // Update next address of prev node to new node
+                    prevNode.next = newNode;
+                    this.length++;
+                    return true;
+                }
+                node = node.prev;
+            }
+        } else {
+            let node = this.head;
+            //search from the start
+            for (let index = 0; index < mid; index++) {
+                if (index === position) {
+                    const prevNode = node.prev;
+                    // set correct addresses in newNode
+                    newNode.next = node;
+                    newNode.prev = prevNode;
+                    // Update prev address of current node to the new node
+                    node.prev = newNode;
+                    // Update next address of prev node to new node
+                    prevNode.next = newNode;
+                    this.length++;
+                    return true;
+                }
+                node = node.next;
+            }
+        }
+        return false;
+    }
 }
 
 let doublyList = new DoublyLinklist();
@@ -167,6 +216,6 @@ doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
 
-doublyList.set(2, 2);
+doublyList.insert(1995, 2);
 
 doublyList.traverse();
