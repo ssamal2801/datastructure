@@ -127,6 +127,38 @@ class DoublyLinklist {
             }
         }
     }
+
+    set(val, position) {
+        if (position < 0 || position > this.length) {
+            console.log('Position out of bound');
+            return false;
+        }
+
+        const mid = Math.floor(position / 2);
+
+        if (position >= mid) {
+            let node = this.tail;
+            // search from the end
+            for (let index = this.length - 1; index >= mid; index--) {
+                if (index === position) {
+                    node.data = val;
+                    return true;
+                }
+                node = node.prev;
+            }
+        } else {
+            let node = this.head;
+            //search from the start
+            for (let index = 0; index < mid; index++) {
+                if (index === position) {
+                    node.data = val;
+                    return true;
+                }
+                node = node.next;
+            }
+        }
+        return false;
+    }
 }
 
 let doublyList = new DoublyLinklist();
@@ -135,6 +167,6 @@ doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
 
-console.log(doublyList.get(2));
+doublyList.set(2, 2);
 
-// doublyList.traverse();
+doublyList.traverse();
