@@ -94,8 +94,38 @@ class DoublyLinklist {
         const newNode = new Node(val);
         newNode.next = this.head;
         this.head = newNode;
+        this.length++;
 
         return this;
+    }
+
+    get(position) {
+        if (position < 0 || position > this.length - 1) {
+            console.log('Position out of bound');
+            return null;
+        }
+
+        const mid = Math.floor(this.length / 2);
+
+        if (position >= mid) {
+            let node = this.tail;
+            // search from the end
+            for (let index = this.length - 1; index >= mid; index--) {
+                if (index === position) {
+                    return node.data;
+                }
+                node = node.prev;
+            }
+        } else {
+            let node = this.head;
+            //search from the start
+            for (let index = 0; index < mid; index++) {
+                if (index === position) {
+                    return node.data;
+                }
+                node = node.next;
+            }
+        }
     }
 }
 
@@ -105,7 +135,6 @@ doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
 
-doublyList.unshift(12);
-doublyList.unshift('28th Jan');
+console.log(doublyList.get(2));
 
-doublyList.traverse();
+// doublyList.traverse();
