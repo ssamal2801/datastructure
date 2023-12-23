@@ -55,7 +55,7 @@ class DoublyLinklist {
     pop() {
         if (!this.head) {
             console.log('Empty list, nothing to remove.');
-            return undefined;
+            return;
         }
 
         const nodeToRemove = this.tail;
@@ -71,6 +71,24 @@ class DoublyLinklist {
         this.length--;
         return nodeToRemove;
     }
+
+    shift() {
+        if (!this.head) {
+            console.log('The list is empty, nothing to remove.');
+            return;
+        }
+
+        const nodeToRemove = this.head;
+        if (this.length === 1) {
+            this.head = null;
+            this.tail = null;
+        }
+
+        this.head = this.head.next;
+
+        this.length--;
+        return nodeToRemove;
+    }
 }
 
 let doublyList = new DoublyLinklist();
@@ -78,7 +96,8 @@ let doublyList = new DoublyLinklist();
 doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
-doublyList.pop();
-doublyList.pop();
+
+doublyList.shift();
+doublyList.shift();
 
 doublyList.traverse();
