@@ -89,6 +89,14 @@ class DoublyLinklist {
         this.length--;
         return nodeToRemove;
     }
+
+    unshift(val) {
+        const newNode = new Node(val);
+        newNode.next = this.head;
+        this.head = newNode;
+
+        return this;
+    }
 }
 
 let doublyList = new DoublyLinklist();
@@ -97,7 +105,7 @@ doublyList.push('Swagat');
 doublyList.push('Samal');
 doublyList.push(28);
 
-doublyList.shift();
-doublyList.shift();
+doublyList.unshift(12);
+doublyList.unshift('28th Jan');
 
 doublyList.traverse();
